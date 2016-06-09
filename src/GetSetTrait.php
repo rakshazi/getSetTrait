@@ -56,5 +56,7 @@ trait GetSetTrait
     public function setData($property, $data = null)
     {
         $this->$property = $data;
+        
+        return $this;
     }
 }
