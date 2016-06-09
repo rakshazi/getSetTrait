@@ -21,8 +21,8 @@
     },
 
 	"autoload":	{
-		"psr-0": {
-			"Rakshazi": "src/"
+		"psr-4": {
+			"Rakshazi\\": "src/"
 		}
 	}
 }
