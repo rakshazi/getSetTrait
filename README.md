@@ -13,7 +13,7 @@ GetSetTrait uses [Composer](http://getcomposer.org/) to make hassles Go.
 
 Learn to use composer and add this to require (in your composer.json):
 
-> "rakshazi/get-set-trait": "dev-master"
+> "rakshazi/get-set-trait": "@stable"
 
 Library on [Packagist](https://packagist.org/packages/rakshazi/get-set-trait).
 
