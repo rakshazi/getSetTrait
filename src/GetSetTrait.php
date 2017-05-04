@@ -1,42 +1,53 @@
 <?php
+
 namespace Rakshazi;
 
 /**
- * Dynamic getter/setter library for PHP 5.4+
+ * Dynamic getter/setter library for PHP 5.4+.
  *
  * Changelog:
  * Current realization - rakshazi/get-set-trait
  * First realization - rakshazi/get-set-go-improved
  * Idea - usmanhalalit/get-set-go
  *
- * @link https://github.com/rakshazi/GetSetTrait/blob/master/README.md
+ * @see https://github.com/rakshazi/GetSetTrait/blob/master/README.md
  */
 trait GetSetTrait
 {
     /**
-     * Call method or getter/setter for property
+     * Call method or getter/setter for property.
+     *
      * @param string $method
-     * @param mixed $data
+     * @param mixed  $data
+     *
      * @return mixed Data from object property
+     *
+     * @throws \Exception if method not implemented in class
      */
-    public function __call($method = null, $params = array())
+    public function __call($method = null, $params = [])
     {
         $parts = preg_split('/([A-Z][^A-Z]*)/', $method, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
         $type = array_shift($parts);
 
-        if ($type == 'get' || $type = 'set') {
+        if ($type == 'get' || $type == 'set') {
             $property = strtolower(implode('_', $parts));
-            $params = (isset($params[0])) ? array($property, $params[0]) : array($property);
-            return call_user_func_array(array($this, $type . 'Data'), $params);
+            $params = (isset($params[0])) ? [$property, $params[0]] : [$property];
+
+            return call_user_func_array([$this, $type.'Data'], $params);
+        }
+        if (method_exists($this, $method)) {
+            return call_user_func_array([$this, $method], $params);
         }
 
-        return call_user_func_array(array($this, $method), $params);
+        throw new \Exception('Method "'.$method.'" not implemented.');
     }
 
     /**
-     * Get property data, eg getData('post_id')
+     * Get property data, eg getData('post_id').
+     *
      * @param string $property
-     * @return $this
+     *
+     * @return mixed
      */
     public function getData($property)
     {
@@ -48,15 +59,17 @@ trait GetSetTrait
     }
 
     /**
-     * Set property data, eg getData('post_id',1)
+     * Set property data, eg getData('post_id',1).
+     *
      * @param string $property
-     * @param mixed $data
+     * @param mixed  $data
+     *
      * @return $this
      */
     public function setData($property, $data = null)
     {
         $this->$property = $data;
-        
+
         return $this;
     }
 }
