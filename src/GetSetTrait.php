@@ -15,6 +15,15 @@ namespace Rakshazi;
 trait GetSetTrait
 {
     /**
+     * Name of data property.
+     *
+     * @see $this::setDataProperty()
+     *
+     * @var null|string
+     */
+    private $_data_property = null;
+
+    /**
      * Call method or getter/setter for property.
      *
      * @param string $method
@@ -49,13 +58,17 @@ trait GetSetTrait
      *
      * @return mixed
      */
-    public function getData($property)
+    public function getData($property, $default = null)
     {
+        if ($this->_data_property && isset($this->{$this->_data_property}[$property])) {
+            return $this->{$this->_data_property}[$property];
+        }
+
         if (property_exists($this, $property)) {
             return $this->$property;
         }
 
-        return null;
+        return $default;
     }
 
     /**
@@ -68,7 +81,27 @@ trait GetSetTrait
      */
     public function setData($property, $data = null)
     {
-        $this->$property = $data;
+        if ($this->_data_property) {
+            $this->{$this->_data_property}[$property] = $data;
+        } else {
+            $this->$property = $data;
+        }
+
+        return $this;
+    }
+
+    /**
+     * If you want use getter and setter only for data array
+     * you can set property name with that function.
+     *
+     * @param string $property
+     *
+     * @return $this
+     */
+    public function setDataProperty(string $property)
+    {
+        $this->_data_property = $property;
+        $this->$property = [];
 
         return $this;
     }
