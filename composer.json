@@ -1,28 +1,25 @@
 {
-	"name": "rakshazi/get-set-trait",
-	"description": "Dynamic Setter-Getter for PHP 5.4+",
-	"homepage": "https://github.com/rakshazi/getSetTrait",
-	"keywords": ["getter", "setter", "trait"],
-	"license": "MIT",
-	"authors":
-	[
-		{
-			"name": "Nikita Chernyi",
-			"role": "Developer"
-		}
-	],
+    "name": "rakshazi/get-set-trait",
+    "description": "Dynamic Setter-Getter for PHP 5.4+",
+    "homepage": "https://github.com/rakshazi/getSetTrait",
+    "keywords": ["getter", "setter", "trait"],
+    "license": "MIT",
+    "authors":
+    [
+        {
+            "name": "Nikita Chernyi",
+            "homepage": "http://rakshazi.cf",
+            "role": "Developer"
+        }
+    ],
 
-	"require": {
-		"php": ">=5.4.0"
-	},
-
-	"require-dev": {
-
+    "require": {
+        "php": ">=5.4.0"
     },
 
-	"autoload":	{
-		"psr-4": {
-			"Rakshazi\\": "src/"
-		}
-	}
+    "autoload":	{
+        "psr-4": {
+            "Rakshazi\\": "src/"
+        }
+    }
 }
