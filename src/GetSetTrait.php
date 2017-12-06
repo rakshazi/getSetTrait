@@ -98,7 +98,7 @@ trait GetSetTrait
      *
      * @return $this
      */
-    public function setDataProperty(string $property)
+    public function setDataProperty($property)
     {
         $this->_data_property = $property;
         $this->$property = [];
