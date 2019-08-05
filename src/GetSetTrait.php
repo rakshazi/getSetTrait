@@ -91,6 +91,20 @@ trait GetSetTrait
     }
 
     /**
+     * If using the "data property" method, return all properties
+     * in an array.  Returns false if not using data property.
+     *
+     * @return array|null
+     */
+    public function getAllData() {
+        if ($this->_data_property) {
+            return $this->{$this->_data_property};
+        }
+
+        return null;
+    }
+
+    /**
      * If you want use getter and setter only for data array
      * you can set property name with that function.
      *
