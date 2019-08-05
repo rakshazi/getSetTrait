@@ -44,6 +44,10 @@ $dummy->setData('message_for_world', 'Bye-bye!');
 echo $dummy->getData('message_for_world')."\n";
 //Will set new var 'new_message'
 $dummy->setNewMessage('Use me now!');
+//Will return true, value exists
+$dummy->hasNewMessage();
+//Will return false
+$dummy->hasSomeOtherValue();
 //Will show all object data
 var_dump($dummy);
 ```
@@ -103,3 +107,4 @@ object(Dummy)#1 (2) {
   }
 }
 ```
+
