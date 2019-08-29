@@ -92,7 +92,7 @@ trait GetSetTrait
 
     /**
      * If using the "data property" method, return all properties
-     * in an array.  Returns false if not using data property.
+     * in an array.  Returns null if not using data property.
      *
      * @return array|null
      */
