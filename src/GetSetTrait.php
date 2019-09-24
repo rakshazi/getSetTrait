@@ -33,7 +33,7 @@ trait GetSetTrait
      *
      * @throws \Exception if method not implemented in class
      */
-    public function __call($method = null, $params = [])
+    public function __call($method, $params)
     {
         $parts = preg_split('/([A-Z][^A-Z]*)/', $method, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
         $type = array_shift($parts);
