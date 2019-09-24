@@ -88,6 +88,8 @@ $dummy->setData('message_for_world', 'Bye-bye!');
 echo $dummy->getData('message_for_world')."\n";
 //Will set new var 'new_message'
 $dummy->setNewMessage('Use me now!');
+//Will return all properties in an array
+$dummy->getAllData();
 //Will show all object data
 var_dump($dummy);
 ```

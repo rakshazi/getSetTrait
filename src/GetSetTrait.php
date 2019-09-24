@@ -33,7 +33,7 @@ trait GetSetTrait
      *
      * @throws \Exception if method not implemented in class
      */
-    public function __call($method = null, $params = [])
+    public function __call($method, $params)
     {
         $parts = preg_split('/([A-Z][^A-Z]*)/', $method, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
         $type = array_shift($parts);
@@ -104,6 +104,20 @@ trait GetSetTrait
         }
 
         return property_exists($this, $property);
+    }
+  
+    /**
+     * If using the "data property" method, return all properties
+     * in an array.  Returns null if not using data property.
+     *
+     * @return array|null
+     */
+    public function getAllData() {
+        if ($this->_data_property) {
+            return $this->{$this->_data_property};
+        }
+
+        return null;
     }
 
     /**
