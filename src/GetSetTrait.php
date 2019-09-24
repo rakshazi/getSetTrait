@@ -38,7 +38,7 @@ trait GetSetTrait
         $parts = preg_split('/([A-Z][^A-Z]*)/', $method, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
         $type = array_shift($parts);
 
-        if ($type == 'get' || $type == 'set') {
+        if ($type == 'get' || $type == 'set' || $type == 'has') {
             $property = strtolower(implode('_', $parts));
             $params = (isset($params[0])) ? [$property, $params[0]] : [$property];
 
@@ -90,6 +90,22 @@ trait GetSetTrait
         return $this;
     }
 
+    /**
+     * Return true is a given property has been assigned, eg hasData('post_id').
+     *
+     * @param string $property
+     *
+     * @return mixed
+     */
+    public function hasData($property)
+    {
+        if ($this->_data_property) {
+            return isset($this->{$this->_data_property}[$property]);
+        }
+
+        return property_exists($this, $property);
+    }
+  
     /**
      * If using the "data property" method, return all properties
      * in an array.  Returns null if not using data property.
